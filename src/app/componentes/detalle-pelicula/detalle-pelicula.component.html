@@ -1,0 +1,9 @@
+<div>
+    <ul>
+        <li><h4>{{pelicula.nombre}} - id: {{pelicula.id}}</h4></li>
+        <li *ngIf="pelicula.foto != ''"><img src={{pelicula.foto}} width="200px" height="200px" ></li>
+        <li>tipo : {{pelicula.tipo}}</li>
+        <li>fecha de estreno : {{pelicula.fechaEstreno}}</li>
+        <li>cantidad de publico : {{pelicula.cantidadPublico}}</li>
+    </ul>
+</div>
