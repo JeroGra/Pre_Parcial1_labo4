@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "preparcial1-61325": {
+      "hosting": {
+        "simulacro-pp-la": [
+          "preparcial1-61325"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "preparcial1-61325"
+  }
+}
