@@ -8,6 +8,7 @@ import { PeliculaListadoComponent } from './componentes/pelicula-listado/pelicul
 
 const routes: Routes = [
 
+  {path:'', redirectTo:'busqueda', pathMatch:"full"},
   {path:'bienvenido', redirectTo:"busqueda"},
   {path:'busqueda', component:BusquedaComponent},
   {path:'peliculas/alta', component:PeliculaAltaComponent},

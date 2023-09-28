@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BusquedaComponent } from './componentes/busqueda/busqueda.component';
@@ -14,6 +14,9 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { TablaPaisesComponent } from './componentes/tabla-paises/tabla-paises.component';
+import { PaisesServiceService } from './servicios/paises-service.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,16 +27,19 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     ActorListadoComponent,
     PeliculaListadoComponent,
     TablaPeliculaComponent,
-    DetallePeliculaComponent
+    DetallePeliculaComponent,
+    TablaPaisesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage())
   ],
-  providers: [],
+  providers: [PaisesServiceService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,1 +1,51 @@
-<p>actor-alta works!</p>
+
+  <div  class="container">
+   <div class="row">
+    <div class="col-md-4 order-md-2 mb-4">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted">Tabla de Paises</span>
+        <span class="badge badge-secondary badge-pill">3</span>
+      </h4>
+      <ul style="overflow: scroll; height: 500px; width: 500px;" class="list-group mb-3">
+
+        <app-tabla-paises [paises]="arrayPaises" (PaisSeleccionadoevent)="ObtenerPaisSelecionada($event)" ></app-tabla-paises>
+
+      </ul>
+    </div>
+
+
+
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">Cargar datos de Actor</h4>
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName">Nombre</label>
+            <input type="text" name="nombre" class="form-control" id="firstName" placeholder="Nombre" [(ngModel)]="nombreActor" required>
+            <div class="invalid-feedback">
+              Nombre valido (minimo 5 caracteres, Maximo 10)
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="lastName">Apellido</label>
+            <input type="text" name="apellido" class="form-control" id="lastName" placeholder="Apellido" [(ngModel)]="apellidoActor" required>
+            <div class="invalid-feedback">
+              Apellido valido (minimo 5 caracteres, Maximo 10)
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="address">Pais</label>
+          <input disabled="true" type="text" class="form-control" id="address" value="{{nombrePais}}" placeholder="Seleccione un pais de la lista" required>
+        </div>
+
+        <hr class="mb-4">
+        <button (click)="CargarActor()" class="btn btn-primary btn-lg btn-block" type="button">Registrar</button>
+      </form>
+
+      <h3 style="color: red;">{{alertaMensaje}}</h3>
+      <h3 style="color: rgb(21, 255, 0);">{{alertaMensajeBien}}</h3>
+    </div>
+  </div>
+  </div>

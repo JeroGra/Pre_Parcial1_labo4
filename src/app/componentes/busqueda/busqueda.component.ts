@@ -1,5 +1,6 @@
 import { JsonPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Pelicula } from 'src/app/clases/pelicula';
 
 @Component({
@@ -9,6 +10,7 @@ import { Pelicula } from 'src/app/clases/pelicula';
 })
 export class BusquedaComponent implements OnInit {
 
+  constructor(private ruta:Router){}
   //Hardcode Peliculas
   arrayPeliculas = [
     {
@@ -37,6 +39,7 @@ export class BusquedaComponent implements OnInit {
     }
   ];
   //Variables
+  altaActor = false;
   peliculaSelecionada:Pelicula = new Pelicula();
   mostrarlistado:boolean=false;
   mostrarocultar = "Mostrar listado Peliculas"
@@ -67,6 +70,18 @@ export class BusquedaComponent implements OnInit {
   LimpiarPelicula()
   {
     this.peliculaSelecionada = new Pelicula();
+  }
+
+  AltaActores()
+  {
+    //this.ruta.navigateByUrl("actor/alta");
+    if(this.altaActor)
+    {
+      this.altaActor = false;
+    }
+    else{
+      this.altaActor = true;
+    }
   }
   
 }
