@@ -1,0 +1,20 @@
+<table>
+
+    <tr>
+        <th>Apellido</th>
+        <th>Nombre</th>
+        <th>Pais</th>
+        <th>Pais imagen</th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    <tr *ngFor="let actor  of actores">
+        <td>{{actor.apellido}}</td>
+        <td>{{actor.nombre}}</td>
+         <td>{{actor.pais.name.common}}</td>
+        <td><img width="100px" height="100px" src="{{actor.pais.flags.png}}"></td>
+        <td><button name="pais" (click)="select(actor)">Selecionar</button></td>
+    </tr>
+
+</table>

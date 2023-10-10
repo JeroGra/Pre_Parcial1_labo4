@@ -1,20 +1,6 @@
 <body>
     <main>
-        <header class="pb-3 mb-4 border-bottom">
-          <nav  class="navbar navbar-expand navbar-dark bg-dark">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a   style="color: black;" class="nav-link" href="busqueda">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a  style="color: black;"  class="nav-link" (click)="AltaActores()" >Alta Actores</a>
-                </li>
-              </ul>
-              <form class="form-inline my-2 my-md-0">
-                <input class="form-control" type="text" placeholder="Search">
-              </form>
-          </nav>
-        </header>
+
     
        
     
@@ -23,8 +9,7 @@
           <div class="col-md-6">
             <div class="h-100 p-5 text-bg-dark rounded-3">
               <h2>Listado Peliculas</h2>
-              <app-tabla-pelicula *ngIf="mostrarlistado ngelse condicionFalsa" [peliculas]="arrayPeliculas" (PeliculaSelecionadaEvent)="ObtenerPeliculaSelecionada($event)"></app-tabla-pelicula> 
-              <p #condicionFalsa></p>
+              <app-tabla-pelicula *ngIf="mostrarlistado" [peliculas]="arrayPeliculas" (PeliculaSelecionadaEvent)="ObtenerPeliculaSelecionada($event)"></app-tabla-pelicula> 
               <button  (click)="MostrarPeliculas()"  class="btn btn-outline-light" type="button">{{mostrarocultar}}</button>
             </div>
           </div>

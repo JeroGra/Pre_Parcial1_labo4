@@ -2,6 +2,7 @@ import { JsonPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Pelicula } from 'src/app/clases/pelicula';
+import { BdActoresService } from 'src/app/servicios/bd-actores.service';
 
 @Component({
   selector: 'app-busqueda',
@@ -10,34 +11,9 @@ import { Pelicula } from 'src/app/clases/pelicula';
 })
 export class BusquedaComponent implements OnInit {
 
-  constructor(private ruta:Router){}
+  constructor(private ruta:Router, private dataBase : BdActoresService){}
   //Hardcode Peliculas
-  arrayPeliculas = [
-    {
-      "id":"10",
-      "nombre":"Harry Potter",
-      "tipo":"otro",
-      "fechaEstreno":"29/11/2001",
-      "cantidadPublico":10000,
-      "foto":"../../../assets/imagenes/hp.png"
-    },
-    {
-      "id":"1",
-      "nombre":"The Lord of the Rings",
-      "tipo":"otro",
-      "fechaEstreno":"31/1/2002",
-      "cantidadPublico":5000,
-      "foto":"../../../assets/imagenes/lor.png"
-    },
-    {
-      "id":"100",
-      "nombre":"X",
-      "tipo":"accion",
-      "fechaEstreno":"12/12/2023",
-      "cantidadPublico":1,
-      "foto":""
-    }
-  ];
+  arrayPeliculas:any = [];
   //Variables
   altaActor = false;
   peliculaSelecionada:Pelicula = new Pelicula();
@@ -46,7 +22,8 @@ export class BusquedaComponent implements OnInit {
 
   //Funciones
   ngOnInit(): void {
-    localStorage.setItem("peliculas",JSON.stringify(this.arrayPeliculas));
+    this.dataBase.TraerPeliculas();
+    this.arrayPeliculas = this.dataBase.peliculas;
   }
 
   MostrarPeliculas(){

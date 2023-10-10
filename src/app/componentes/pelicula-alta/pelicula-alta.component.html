@@ -1,1 +1,144 @@
-<p>pelicula-alta works!</p>
+
+<div  class="container">
+  <div *ngIf="loading">
+    <h1>SUBIENDO...</h1>
+  </div>
+    <div class="row" *ngIf="!loading">
+     <div class="col-md-4 order-md-2 mb-4">
+       <h4 class="d-flex justify-content-between align-items-center mb-3">
+         <span class="text-muted">Tabla de Actores</span>
+       </h4>
+       <ul style="overflow: scroll; height: 500px; width: 500px;" class="list-group mb-3">
+ 
+        <app-tabla-actores [actores]="actoresArr" (ActorSeleccionadoevent)="ObtenerActorSelecionada($event)"></app-tabla-actores>
+        
+       </ul>
+     </div>
+     <div class="col-md-8 order-md-1" >
+       <h4 class="mb-3">Cargar datos de Pelicula</h4>
+       <form [formGroup]="forms" class="needs-validation">
+         <div class="row">
+
+           <!-- //////////////////////// NOMBRE ////////////////////////////////////// -->
+           <div class="col-md-6 mb-3" >
+
+          
+             <label for="firstName" style="margin-right: 80%;" >Nombre</label>
+                <div *ngIf="forms.controls['nombrePelicula'].errors != null"  >
+                  <small 
+                      *ngIf="forms.controls['nombrePelicula'].errors!['required'] && forms.controls['nombrePelicula'].touched"
+                      style="color: red;"
+                      >
+                      Dato Obligatorio
+                 </small>
+               </div>
+             <input type="text" name="nombrePelicula"  formControlName="nombrePelicula" class="form-control" [(ngModel)]="nombre" >
+               <div  *ngIf="forms.controls['nombrePelicula'].errors != null" >
+                 <small 
+                    *ngIf="!forms.controls['nombrePelicula'].errors!['minLength'] && forms.controls['nombrePelicula'].touched"
+                    style="color: red;"
+                    >
+                    
+                    Coloque minimo {{minL}} caracteres
+                 </small>
+               </div>  
+
+          </div>
+           <!-- ///////////////////////////////////////////////////////////////////////////////////////// -->
+            <!-- ///////////////////////// TIPO ///////////////////////////////////////////////////////// -->
+           <div class="col-md-6 mb-3">
+             <label for="lastName" style="margin-right: 90%;">Tipo</label>
+             <div *ngIf="forms.controls['tipoPelicula'].errors != null" >
+                <small 
+                    *ngIf="forms.controls['tipoPelicula'].errors!['required'] && forms.controls['tipoPelicula'].touched"
+                    style="color: red;"
+                    >
+                    Dato Obligatorio
+                 </small>
+              </div>
+             <input type="text" name="tipoPelicula" formControlName="tipoPelicula" class="form-control" [(ngModel)]="tipo" >
+             <div *ngIf="forms.controls['tipoPelicula'].errors != null" >
+                <small 
+                  *ngIf="!forms.controls['tipoPelicula'].errors!['minLength'] && forms.controls['tipoPelicula'].touched"
+                  style="color: red;"
+                >
+                   Coloque minimo {{minL}} caracteres
+                </small> 
+            </div>
+          </div>
+          <!-- ///////////////////////////////////////////////////////////////////////////////////////// -->
+          <!-- ///////////////////////// FECHA ///////////////////////////////////////////////////////// -->
+           <div class="col-md-6 mb-3">
+            <label for="lastName" style="margin-right: 80%;">fechaEstreno</label>
+              <div *ngIf="forms.controls['fechaPelicula'].errors != null" >
+                <small 
+                    *ngIf="forms.controls['fechaPelicula'].errors!['required'] && forms.controls['fechaPelicula'].touched"
+                    style="color: red;"
+                    >
+                    Dato Obligatorio
+                </small>
+              </div>
+            <input type="date" name="fechaPelicula" formControlName="fechaPelicula" class="form-control" [(ngModel)]="fechaEstreno" >
+          </div> 
+            <!-- ///////////////////////////////////////////////////////////////////////////////////////// -->
+            <!-- ///////////////////////// PUBLICO /////////////////////////////////////////////////////// -->
+          <div class="col-md-6 mb-3">
+
+            <label for="lastName">cantidadPublico</label>
+            <div *ngIf="forms.controls['publicoPelicula'].errors != null"  >
+              <small 
+                *ngIf="(forms.controls['publicoPelicula'].errors!['min'] || forms.controls['publicoPelicula'].errors!['required']) && forms.controls['publicoPelicula'].touched"
+                style="color: red;"
+              >
+                  Solo pueden ser peliculas de minimo 5000 espectadores
+              </small>
+            </div> 
+            <input type="number" name="publicoPelicula" formControlName="publicoPelicula" class="form-control" [(ngModel)]="cantidadPublico" >
+            <div class="invalid-feedback">
+             
+            </div>
+          </div>
+            <!-- ///////////////////////////////////////////////////////////////////////////////////////// -->
+            <!-- ///////////////////////// FOTO ////////////////////////////////////////////////////////// -->
+          <div class="col-md-6 mb-3">
+            <label for="lastName">Foto</label>
+            <div *ngIf="forms.controls['fotoPelicula'].errors != null"  >
+              <small 
+                *ngIf="forms.controls['fotoPelicula'].errors!['required'] && forms.controls['fotoPelicula'].touched"
+                style="color: red;"
+                >
+                Dato Obligatorio
+             </small>
+            </div>
+            <input type="file" name="foto" value="" formControlName="fotoPelicula" class="form-control" id="foto" placeholder="" (change)="capturarFile($event)"  [(ngModel)]="foto">
+            <div>
+               <img  style="width: 200px;" [src]="previsualizacion">
+            </div>
+            <div class="invalid-feedback">
+              
+            </div>
+          </div>
+         </div>
+            <!-- ///////////////////////////////////////////////////////////////////////////////////////// -->
+            <!-- ///////////////////////// ACTOR ///////////////////////////////////////////////////////// -->
+         <div class="mb-3">  
+           <label  for="address">Actor</label> 
+           <div *ngIf="forms.controls['actor'].errors != null" >
+            <small 
+              *ngIf="!actor"
+              style="color: red;"
+              
+              >
+              Dato Obligatorio
+            </small>
+          </div>
+           <img style="margin: 5px;" width="50px" height="50px" src="{{imgPais}}">
+           <input disabled='true' type="text" class="form-control" id="actor" value="{{actorSelec.nombre}} {{actorSelec.apellido}}"  placeholder="Seleccione un Actor de la lista">
+         </div>
+         <hr class="mb-4">
+         <button class="btn btn-primary btn-lg btn-block"  (click)="Registrar()" [disabled]="forms.invalid && !actor" type="button">Registrar</button>
+         <button class="btn btn-primary btn-lg btn-block" (click)="borrar()" type="button">Borrar datos</button>
+       </form>
+     </div>
+   </div>
+   </div>

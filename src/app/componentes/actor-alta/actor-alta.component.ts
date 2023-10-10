@@ -17,6 +17,8 @@ export class ActorAltaComponent implements OnInit {
   nombreActor=""
   apellidoActor=""
   nombrePais = "";
+  imgPais = "";
+  
   arrayPaises : Array<any> = []
   paisSeleccionado : any;
   ngOnInit(): void {
@@ -40,6 +42,7 @@ export class ActorAltaComponent implements OnInit {
     this.paisSeleccionado = pais;
     console.log(this.paisSeleccionado);
     this.nombrePais = this.paisSeleccionado.name.common;
+    this.imgPais = this.paisSeleccionado.flags.png;
   }
 
   CargarActor()
@@ -63,6 +66,7 @@ export class ActorAltaComponent implements OnInit {
           this.nombreActor="";
           this.apellidoActor="";
           this.nombrePais = "";
+          this.imgPais = "";
         },2000)
       }
       else

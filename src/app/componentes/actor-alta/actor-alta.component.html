@@ -4,7 +4,6 @@
     <div class="col-md-4 order-md-2 mb-4">
       <h4 class="d-flex justify-content-between align-items-center mb-3">
         <span class="text-muted">Tabla de Paises</span>
-        <span class="badge badge-secondary badge-pill">3</span>
       </h4>
       <ul style="overflow: scroll; height: 500px; width: 500px;" class="list-group mb-3">
 
@@ -12,9 +11,6 @@
 
       </ul>
     </div>
-
-
-
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3">Cargar datos de Actor</h4>
       <form class="needs-validation" novalidate>
@@ -35,9 +31,11 @@
           </div>
         </div>
 
-        <div class="mb-3">
-          <label for="address">Pais</label>
+        <div class="mb-3">  
+          <label  for="address">Pais</label> 
+          <img style="margin: 5px;" width="50px" height="50px" src="{{imgPais}}">
           <input disabled="true" type="text" class="form-control" id="address" value="{{nombrePais}}" placeholder="Seleccione un pais de la lista" required>
+       
         </div>
 
         <hr class="mb-4">

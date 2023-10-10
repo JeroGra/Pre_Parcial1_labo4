@@ -3,21 +3,34 @@
 
         <tr>
             <th>Id</th>
+            <th></th>
+            <th></th>
             <th>Nombre</th>
+            <th></th>
             <th>Tipo</th>
+            <th></th>
             <th>Fecha de estreno</th>
+            <th></th>
             <th>Cantidad de publico</th>
+            <th></th>
             <th></th>
             <th></th>
         </tr>
 
         <tr *ngFor="let pelicula  of peliculas">
             <td>{{pelicula.id}}</td>
+            <td></td>
+            <td></td>
             <td>{{pelicula.nombre}}</td>
+            <td></td>
             <td>{{pelicula.tipo}}</td>
+            <td></td>
             <td>{{pelicula.fechaEstreno}}</td>
+            <td></td>
             <td>{{pelicula.cantidadPublico}}</td>
-            <td *ngIf="pelicula.foto !=''"><img width="100px" height="100px" src={{pelicula.foto}} alt=""></td>
+            <td></td>
+            <td></td>
+            <td *ngIf="pelicula.fotos[0].url !=''"><img width="100px" height="100px" src={{pelicula.fotos[0].url}} alt=""></td>
             <td><button name="pelicula" (click)="select(pelicula)">Selecionar</button></td>
         </tr>
 

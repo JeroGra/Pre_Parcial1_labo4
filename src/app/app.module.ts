@@ -16,7 +16,8 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { TablaPaisesComponent } from './componentes/tabla-paises/tabla-paises.component';
 import { PaisesServiceService } from './servicios/paises-service.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TablaActoresComponent } from './componentes/tabla-actores/tabla-actores.component';
 
 @NgModule({
   declarations: [
@@ -28,13 +29,15 @@ import { FormsModule } from '@angular/forms';
     PeliculaListadoComponent,
     TablaPeliculaComponent,
     DetallePeliculaComponent,
-    TablaPaisesComponent
+    TablaPaisesComponent,
+    TablaActoresComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage())
